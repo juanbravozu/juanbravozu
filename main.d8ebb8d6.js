@@ -5543,14 +5543,14 @@ var _gsap = _interopRequireDefault(require("gsap"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var timeLine = _gsap.default.timeline({
-  defaults: {
-    ease: 'power1.out',
-    duration: .5
-  }
-});
-
 var animateSplash = function animateSplash() {
+  var timeLine = _gsap.default.timeline({
+    defaults: {
+      ease: 'power1.out',
+      duration: .5
+    }
+  });
+
   timeLine.to('body', {
     height: '100vh',
     overflow: 'hidden',
@@ -5587,6 +5587,71 @@ var animateSplash = function animateSplash() {
 
 var _default = animateSplash;
 exports.default = _default;
+},{"gsap":"node_modules/gsap/index.js"}],"scripts/modalBehavior.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _gsap = _interopRequireDefault(require("gsap"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var modalBehavior = function modalBehavior() {
+  var form = document.querySelector('form');
+  var inputs = document.querySelectorAll('.textInput');
+  var contactFromBtn = document.querySelector('.contactBtn');
+  var contactFromBanner = document.querySelector('.contact__footer');
+  var contactFromNav = document.querySelector('#contact__nav');
+  var closeBtn = document.querySelector('.modal img');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+  });
+
+  var openModal = function openModal() {
+    var timeline = _gsap.default.timeline({
+      defaults: {
+        ease: 'power1.out',
+        duration: .3
+      }
+    });
+
+    timeline.to('.modal', {
+      display: 'flex',
+      duration: 0
+    });
+    timeline.to('.modal', {
+      opacity: 1
+    });
+  };
+
+  var closeModal = function closeModal() {
+    var timeline = _gsap.default.timeline({
+      defaults: {
+        ease: 'power1.out',
+        duration: .3
+      }
+    });
+
+    timeline.to('.modal', {
+      opacity: 0
+    });
+    timeline.to('.modal', {
+      display: 'none',
+      duration: 0
+    });
+  };
+
+  contactFromBtn.addEventListener('click', openModal);
+  contactFromBanner.addEventListener('click', openModal);
+  contactFromNav.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+};
+
+var _default = modalBehavior;
+exports.default = _default;
 },{"gsap":"node_modules/gsap/index.js"}],"scripts/projectCard.js":[function(require,module,exports) {
 "use strict";
 
@@ -5618,17 +5683,20 @@ var ProjectCard = /*#__PURE__*/function () {
       var cardWrap = document.createElement('div');
       cardWrap.classList.add('project__wrap');
       container.appendChild(cardWrap);
-      var animationImg = document.createElement('img');
-      animationImg.setAttribute('src', this.data.animation);
-      animationImg.classList.add('project__animation', 'lazy');
-      cardWrap.appendChild(animationImg);
+      var imageContainer = document.createElement('div');
+      imageContainer.classList.add('project__imageContainer');
+      cardWrap.appendChild(imageContainer);
       var thumbnailContainer = document.createElement('div');
       thumbnailContainer.classList.add('project__thumbnail');
-      cardWrap.appendChild(thumbnailContainer);
+      imageContainer.appendChild(thumbnailContainer);
       var thumbnailImg = document.createElement('img');
       thumbnailImg.setAttribute('src', this.data.thumbnail);
-      thumbnailImg.classList.add('lazy');
+      thumbnailImg.classList.add('project__img');
       thumbnailContainer.appendChild(thumbnailImg);
+      var animationImg = document.createElement('img');
+      animationImg.setAttribute('src', this.data.animation);
+      animationImg.classList.add('project__animation');
+      imageContainer.appendChild(animationImg);
       var projectInfo = document.createElement('div');
       projectInfo.classList.add('project__info');
       cardWrap.appendChild(projectInfo);
@@ -5686,12 +5754,66 @@ var ProjectCard = /*#__PURE__*/function () {
 
 var _default = ProjectCard;
 exports.default = _default;
+},{}],"scripts/textInputInteraction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var textInputInteraction = function textInputInteraction() {
+  var textInputContainers = document.querySelectorAll('.textInput');
+  textInputContainers.forEach(function (container) {
+    var input = container.querySelector('input');
+
+    if (!input) {
+      input = container.querySelector('textarea');
+    }
+
+    var isTextarea = input.tagName == "TEXTAREA";
+    input.addEventListener('focus', function () {
+      container.classList.add('textInput--active');
+    });
+    input.addEventListener('blur', function () {
+      if (input.value.trim() == '') {
+        container.classList.remove('textInput--active');
+      }
+    });
+
+    var limitTextarea = function limitTextarea(event) {
+      var indicator = container.querySelector('p');
+
+      if (!input.value.length <= 600) {
+        input.value = input.value.slice(0, 600);
+      }
+
+      indicator.innerText = 600 - input.value.length + '/600';
+    };
+
+    if (isTextarea) {
+      input.addEventListener('input', limitTextarea);
+      input.addEventListener('paste', limitTextarea);
+      var textArea = container.querySelector('.textInput__textarea');
+      textArea.addEventListener('click', function () {
+        input.focus();
+      });
+    }
+  });
+};
+
+var _default = textInputInteraction;
+exports.default = _default;
 },{}],"scripts/main.js":[function(require,module,exports) {
 "use strict";
 
 var _animations = _interopRequireDefault(require("./animations"));
 
+var _modalBehavior = _interopRequireDefault(require("./modalBehavior"));
+
 var _projectCard = _interopRequireDefault(require("./projectCard"));
+
+var _textInputInteraction = _interopRequireDefault(require("./textInputInteraction"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5713,9 +5835,11 @@ var createProjectCards = function createProjectCards(url) {
 
 window.addEventListener('load', function () {
   createProjectCards('https://portafolio-12481.firebaseio.com/projects/cards.json');
+  (0, _textInputInteraction.default)();
+  (0, _modalBehavior.default)();
   (0, _animations.default)();
 });
-},{"./animations":"scripts/animations.js","./projectCard":"scripts/projectCard.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./animations":"scripts/animations.js","./modalBehavior":"scripts/modalBehavior.js","./projectCard":"scripts/projectCard.js","./textInputInteraction":"scripts/textInputInteraction.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -5743,7 +5867,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54082" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60858" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
