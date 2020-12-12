@@ -31988,20 +31988,49 @@ var textInputInteraction = function textInputInteraction() {
 
 var _default = textInputInteraction;
 exports.default = _default;
-},{}],"scripts/about.js":[function(require,module,exports) {
+},{}],"scripts/loadProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var loadProject = function loadProject() {
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  fetch('https://portafolio-12481.firebaseio.com/projects/cards.json').then(function (response) {
+    return response.json();
+  }).then(function (projects) {
+    var projectContainer = document.querySelector('.projectDetail');
+    var currentProject = projects[parseInt(urlParams.get('id'))];
+    currentProject.images.forEach(function (image) {
+      var img = document.createElement('img');
+      img.setAttribute('src', image);
+      projectContainer.appendChild(img);
+    });
+  });
+};
+
+var _default = loadProject;
+exports.default = _default;
+},{}],"scripts/project.js":[function(require,module,exports) {
 "use strict";
 
 var _modalBehavior = _interopRequireDefault(require("./modalBehavior"));
 
 var _textInputInteraction = _interopRequireDefault(require("./textInputInteraction"));
 
+var _loadProject = _interopRequireDefault(require("./loadProject"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.addEventListener('load', function () {
   (0, _textInputInteraction.default)();
   (0, _modalBehavior.default)();
+  (0, _loadProject.default)();
 });
-},{"./modalBehavior":"scripts/modalBehavior.js","./textInputInteraction":"scripts/textInputInteraction.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modalBehavior":"scripts/modalBehavior.js","./textInputInteraction":"scripts/textInputInteraction.js","./loadProject":"scripts/loadProject.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32205,5 +32234,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/about.js"], null)
-//# sourceMappingURL=/about.f80e322c.js.map
+},{}]},{},["C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/project.js"], null)
+//# sourceMappingURL=/project.40559a0f.js.map

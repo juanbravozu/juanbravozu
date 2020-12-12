@@ -601,6 +601,18 @@ button:focus {
   margin: 20px 0;
 }
 
+.projectDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 100px;
+}
+.projectDetail img {
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
 * {
   margin: 0;
   padding: 0;

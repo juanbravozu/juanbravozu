@@ -31984,11 +31984,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var ProjectCard = /*#__PURE__*/function () {
-  function ProjectCard(data, root) {
+  function ProjectCard(data, index, root) {
     _classCallCheck(this, ProjectCard);
 
     this.data = data;
     this.root = root;
+    this.index = index;
   }
 
   _createClass(ProjectCard, [{
@@ -32029,7 +32030,7 @@ var ProjectCard = /*#__PURE__*/function () {
       container.addEventListener('mouseleave', this.mouseLeaveHandler);
       container.addEventListener('mouseenter', this.mouseEnterHandler);
       container.addEventListener('click', function () {
-        window.open(_this.data.link, '_blank');
+        window.location.href = './project.html?id=' + _this.index;
       });
     }
   }, {
@@ -32172,8 +32173,8 @@ var createProjectCards = function createProjectCards(url) {
   }).then(function (projects) {
     projectsData = projects;
     var projectsContainer = document.querySelector('.projects');
-    projectsData.forEach(function (data) {
-      var projectCard = new _projectCard.default(data, projectsContainer);
+    projectsData.forEach(function (data, index) {
+      var projectCard = new _projectCard.default(data, index, projectsContainer);
       projectCard.createCard();
     });
   });
@@ -32213,7 +32214,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53809" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
