@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="./main.48b3db1d.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./favicon.8003f84c.png" type="image/x-icon">
@@ -29,24 +29,28 @@
                 <div class="modal__inputs">
                     <div class="textInput">
                         <label for="name">Name</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" required="">
+                        <p class="textInput__error"></p>
                     </div>
     
                     <div class="textInput">
                         <label for="email">Email</label>
-                        <input type="text" id="email">
+                        <input type="email" id="email" required="">
+                        <p class="textInput__error"></p>
                     </div>
     
                     <div class="textInput">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject">
+                        <input type="text" id="subject" required="">
+                        <p class="textInput__error"></p>
                     </div>
     
                     <div class="textInput textInput--textarea">
                         <label for="message">Message</label>
                         <div class="textInput__textarea"></div>
-                        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                        <textarea name="message" id="message" cols="30" rows="10" required=""></textarea>
                         <p class="textInput__indicator">600/600</p>
+                        <p class="textInput__error"></p>
                     </div>
                 </div>                
 
@@ -58,11 +62,11 @@
     <nav class="col-12">
         <ul class="links col-3">
             <li>
-                <a href="#work" class="links__a">Work</a>
+                <a href="./#work" class="links__a">Work</a>
             </li>
 
             <li>
-                <a href="/about.html" class="links__a">About</a>
+                <a href="./about.html" class="links__a">About</a>
             </li>
 
             <li>
@@ -71,7 +75,15 @@
         </ul>
 
         <a class="col-2 logo" href="#">
-            <img src="./logo.236e4034.svg" alt="">
+            <div class="logo__right">
+                <img src="./right__forward.a06d9d6b.svg" alt="" class="forward">
+                <img src="./right__back.9a7a4474.svg" alt="" class="back">
+            </div>
+            <div class="logo__left">
+                <img src="./left__forward.7b385eb0.svg" alt="" class="forward">
+                <img src="./left__back.a7ddfc9b.svg" alt="" class="back">
+            </div>
+            <h1 class="logo__text">BRAVO</h1>
         </a>
 
         <ul class="social col-2">
@@ -115,6 +127,7 @@
     <button class="contactBtn">
         <img src="./email_icon.81c4df27.svg" alt="">
     </button>
+
 
     <script src="./main.d8ebb8d6.js"></script>
 </body>

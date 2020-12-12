@@ -5531,63 +5531,7 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 exports.TweenMax = TweenMaxWithCSS;
 exports.default = exports.gsap = gsapWithCSS;
-},{"./gsap-core.js":"node_modules/gsap/gsap-core.js","./CSSPlugin.js":"node_modules/gsap/CSSPlugin.js"}],"scripts/animations.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _gsap = _interopRequireDefault(require("gsap"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var animateSplash = function animateSplash() {
-  var timeLine = _gsap.default.timeline({
-    defaults: {
-      ease: 'power1.out',
-      duration: .5
-    }
-  });
-
-  timeLine.to('body', {
-    height: '100vh',
-    overflow: 'hidden',
-    duration: 0
-  });
-  timeLine.to('.splash__logo', {
-    scale: 1.3,
-    transformOrigin: '50% 50%'
-  });
-  timeLine.to('.splash__logo', {
-    scale: 1,
-    transformOrigin: '50% 50%'
-  });
-  timeLine.fromTo('.splash__circle', {
-    scale: 0
-  }, {
-    scale: 1,
-    transformOrigin: '50% 50%',
-    delay: .2,
-    duration: .8
-  });
-  timeLine.to('body', {
-    height: 'auto',
-    overflow: 'visible',
-    duration: 0
-  });
-  timeLine.to('.splash', {
-    opacity: 0
-  });
-  timeLine.to('.splash', {
-    display: 'none'
-  });
-};
-
-var _default = animateSplash;
-exports.default = _default;
-},{"gsap":"node_modules/gsap/index.js"}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
+},{"./gsap-core.js":"node_modules/gsap/gsap-core.js","./CSSPlugin.js":"node_modules/gsap/CSSPlugin.js"}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31969,114 +31913,7 @@ var modalBehavior = function modalBehavior() {
 
 var _default = modalBehavior;
 exports.default = _default;
-},{"gsap":"node_modules/gsap/index.js","firebase/app":"node_modules/firebase/app/dist/index.esm.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js"}],"scripts/projectCard.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var ProjectCard = /*#__PURE__*/function () {
-  function ProjectCard(data, root) {
-    _classCallCheck(this, ProjectCard);
-
-    this.data = data;
-    this.root = root;
-  }
-
-  _createClass(ProjectCard, [{
-    key: "createCard",
-    value: function createCard() {
-      var _this = this;
-
-      var container = document.createElement('a');
-      container.classList.add('project', 'col-3');
-      this.root.appendChild(container);
-      var cardWrap = document.createElement('div');
-      cardWrap.classList.add('project__wrap');
-      container.appendChild(cardWrap);
-      var imageContainer = document.createElement('div');
-      imageContainer.classList.add('project__imageContainer');
-      cardWrap.appendChild(imageContainer);
-      var thumbnailContainer = document.createElement('div');
-      thumbnailContainer.classList.add('project__thumbnail');
-      imageContainer.appendChild(thumbnailContainer);
-      var thumbnailImg = document.createElement('img');
-      thumbnailImg.setAttribute('src', this.data.thumbnail);
-      thumbnailImg.classList.add('project__img');
-      thumbnailContainer.appendChild(thumbnailImg);
-      var animationImg = document.createElement('img');
-      animationImg.setAttribute('src', this.data.animation);
-      animationImg.classList.add('project__animation');
-      imageContainer.appendChild(animationImg);
-      var projectInfo = document.createElement('div');
-      projectInfo.classList.add('project__info');
-      cardWrap.appendChild(projectInfo);
-      var projectTitle = document.createElement('h3');
-      projectTitle.innerText = this.data.name;
-      projectInfo.appendChild(projectTitle);
-      var projectCategory = document.createElement('p');
-      projectCategory.innerText = this.data.category;
-      projectInfo.appendChild(projectCategory);
-      container.addEventListener('mousemove', this.mouseMoveHandler);
-      container.addEventListener('mouseleave', this.mouseLeaveHandler);
-      container.addEventListener('mouseenter', this.mouseEnterHandler);
-      container.addEventListener('click', function () {
-        window.open(_this.data.link, '_blank');
-      });
-    }
-  }, {
-    key: "mouseEnterHandler",
-    value: function mouseEnterHandler(event) {
-      var targetThumbnail = event.target.querySelector('.project__thumbnail img');
-      var cardWrap = event.target.querySelector('.project__wrap');
-      targetThumbnail.style.transitionProperty = 'none';
-      cardWrap.style.transitionProperty = 'none';
-      clearTimeout(this.mouseLeaveDelay);
-    }
-  }, {
-    key: "mouseMoveHandler",
-    value: function mouseMoveHandler(event) {
-      var target = event.target;
-      var cardWrap = target.querySelector('.project__wrap');
-      var targetThumbnail = target.querySelector('.project__thumbnail img');
-      var targetAnimation = target.querySelector('.project__animation');
-      var width = target.offsetWidth;
-      var height = target.offsetHeight;
-      var x = event.offsetX / width - 0.5;
-      var y = event.offsetY / height - 0.5;
-      cardWrap.style.transform = "perspective(600px) rotateY( ".concat(x * 10, "deg) rotateX(").concat(y * -10, "deg)");
-      targetThumbnail.style.transform = "translate(-".concat(50 + x * -2, "%, -").concat(50 + y * -2, "%)");
-      targetAnimation.style.left = 50 + x * 5 + '%';
-      targetAnimation.style.top = 50 + y * 5 + '%';
-    }
-  }, {
-    key: "mouseLeaveHandler",
-    value: function mouseLeaveHandler(event) {
-      var targetThumbnail = event.target.querySelector('.project__thumbnail img');
-      var cardWrap = event.target.querySelector('.project__wrap');
-      targetThumbnail.style.transitionProperty = 'transform';
-      cardWrap.style.transitionProperty = 'transform';
-      this.mouseLeaveDelay = setTimeout(function () {
-        targetThumbnail.style.transform = 'translate(-50%, -50%)';
-        cardWrap.style.transform = 'perspective(600px) rotateY(0deg) rotateX(0deg)';
-      }, 300);
-    }
-  }]);
-
-  return ProjectCard;
-}();
-
-var _default = ProjectCard;
-exports.default = _default;
-},{}],"scripts/textInputInteraction.js":[function(require,module,exports) {
+},{"gsap":"node_modules/gsap/index.js","firebase/app":"node_modules/firebase/app/dist/index.esm.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js"}],"scripts/textInputInteraction.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32151,41 +31988,20 @@ var textInputInteraction = function textInputInteraction() {
 
 var _default = textInputInteraction;
 exports.default = _default;
-},{}],"scripts/main.js":[function(require,module,exports) {
+},{}],"scripts/about.js":[function(require,module,exports) {
 "use strict";
 
-var _animations = _interopRequireDefault(require("./animations"));
-
 var _modalBehavior = _interopRequireDefault(require("./modalBehavior"));
-
-var _projectCard = _interopRequireDefault(require("./projectCard"));
 
 var _textInputInteraction = _interopRequireDefault(require("./textInputInteraction"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var projectsData = {};
-
-var createProjectCards = function createProjectCards(url) {
-  fetch(url).then(function (response) {
-    return response.json();
-  }).then(function (projects) {
-    projectsData = projects;
-    var projectsContainer = document.querySelector('.projects');
-    projectsData.forEach(function (data) {
-      var projectCard = new _projectCard.default(data, projectsContainer);
-      projectCard.createCard();
-    });
-  });
-};
-
 window.addEventListener('load', function () {
-  createProjectCards('https://portafolio-12481.firebaseio.com/projects/cards.json');
   (0, _textInputInteraction.default)();
   (0, _modalBehavior.default)();
-  (0, _animations.default)();
 });
-},{"./animations":"scripts/animations.js","./modalBehavior":"scripts/modalBehavior.js","./projectCard":"scripts/projectCard.js","./textInputInteraction":"scripts/textInputInteraction.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modalBehavior":"scripts/modalBehavior.js","./textInputInteraction":"scripts/textInputInteraction.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32389,5 +32205,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/main.js"], null)
-//# sourceMappingURL=/main.d8ebb8d6.js.map
+},{}]},{},["C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/about.js"], null)
+//# sourceMappingURL=/about.f80e322c.js.map
