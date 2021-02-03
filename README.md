@@ -1,4 +1,4 @@
-## Hi there, I'm Juan David Bravo <img align="left" width="20px" src="https://github.com/juanbravozu/Portfolio/blob/master/images/logo.svg">
+## Hi there, I'm Juan David Bravo <img align="left" width="20px" src="https://github.com/juanbravozu/juanbravozu/blob/main/assets/logo.svg">
 
 ### I'm an Interactive Media Design student and Front end developer
 
@@ -8,5 +8,5 @@
 
 ### Connect with me:
 
-[<img align="left" width="20px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg">](https://juanbravozu.github.io/juanbravozu/)
-[<img align="left" width="20px" src="https://github.com/simple-icons/simple-icons/blob/develop/icons/gmail.svg">](mailto:juanda.bravo98@gmail.com)
+[<img align="left" width="20px" src="https://github.com/juanbravozu/juanbravozu/blob/main/assets/globe.svg">](https://juanbravozu.github.io/juanbravozu/)
+[<img align="left" width="20px" src="https://github.com/juanbravozu/juanbravozu/blob/main/assets/email.svg">](mailto:juanda.bravo98@gmail.com)
