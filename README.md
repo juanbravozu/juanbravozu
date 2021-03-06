@@ -4,7 +4,7 @@
 
 - 🔭 I’m currently working on my [personal portfolio!](https://juanbravozu.github.io/juanbravozu/)
 - 🌱 I’m currently learning Typescript
-- ⚡ Fun fact: I'd love to eventually share what I know and help others grow as developers 😊
+- ⚡ Fun fact: I'd love to learn and eventually share what I know to help others grow as developers 😊
 
 ### Connect with me:
 
