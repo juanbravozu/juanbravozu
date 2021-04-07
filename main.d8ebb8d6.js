@@ -32186,6 +32186,16 @@ window.addEventListener('load', function () {
   (0, _modalBehavior.default)();
   (0, _animations.default)();
 });
+window.addEventListener('load', warningMessage);
+window.addEventListener('resize', warningMessage);
+
+function warningMessage(event) {
+  if (window.innerWidth < 1024) {
+    alert('Date of writing: 7th of april, 2021 \n I know this site isn\'t responsive at all but I\'ll be redesigning it soon. \n It\'ll be looking way cleaner and be also mobile friendly 🤓\n Sorry for the annoying alert');
+    event.target.removeEventListener('load', warningMessage);
+    event.target.removeEventListener('resize', warningMessage);
+  }
+}
 },{"./animations":"scripts/animations.js","./modalBehavior":"scripts/modalBehavior.js","./projectCard":"scripts/projectCard.js","./textInputInteraction":"scripts/textInputInteraction.js"}],"C:/Users/USER/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -32214,7 +32224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53809" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54100" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
