@@ -3,7 +3,7 @@
 ### I'm an Interactive Media Design student and Front end developer
 
 - 🔭 I’m currently working on my [personal portfolio!](https://juanbravozu.github.io/juanbravozu/)
-- 🌱 I’m currently learning Typescript
+- 🌱 I’m currently learning Typescript and React
 - ⚡ Fun fact: I'd love to learn and eventually share what I know to help others grow as developers 😊
 
 ### Connect with me:
