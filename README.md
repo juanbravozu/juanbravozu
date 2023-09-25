@@ -1,10 +1,10 @@
-## Hi there, I'm Juan David Bravo <img align="left" width="20px" src="https://github.com/juanbravozu/juanbravozu/blob/main/assets/logo.svg">
+## Hello there, I'm Juan David Bravo <img align="left" width="20px" src="https://github.com/juanbravozu/juanbravozu/blob/main/assets/logo.svg">
 
-### I'm an Interactive Media Design student and Front end developer
+### I'm a Web developer with an Interaction Design major
 
-- 🔭 I’m currently working on my personal portfolio
-- 🌱 I’m currently learning testing with Jest and react-testing-library
-- ⚡ Fun fact: I'd love to learn and eventually share what I know to help others grow as developers 😊
+- 🔭 I’m currently working on [Chrome](https://www.google.com/chrome/) and [The Privacy Sandbox's website](https://privacysandbox.com/)
+- 🌱 I’m currently experimenting with [Astro](https://astro.build/)
+- ⚡ Fun fact: I love to learn and share what I know to help others grow as developers 😊
 
 ### Connect with me:
 
